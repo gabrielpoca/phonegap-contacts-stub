@@ -1,0 +1,14 @@
+{
+  "name": "phonegap-contacts-stub",
+  "version": "0.0.0",
+  "main": "dist/phonegap-contacts-stub.min.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "Faker": "*"
+  }
+}
