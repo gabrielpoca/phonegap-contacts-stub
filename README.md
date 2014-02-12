@@ -1,6 +1,6 @@
 # phonegap-contacts-stub
 
-A stub for the phonegap contacts api. Useful for testing on the browser.
+A stub for the phonegap contacts api. Useful for testing a phonegap on the browser on the browser.
 
 ## About
 
@@ -20,9 +20,9 @@ Or grab the [source](https://github.com/gabrielpoca/phonegap-contacts-stub/dist/
 
 Basic usage is as follows:
 
-    phonegap-contacts-stub();
+    phonegapContactsStub.addContacts( numberOfContacts );
 
-For advanced usage, see the documentation.
+Where numberOfContacts is what the name says.
 
 ## Documentation
 
@@ -30,13 +30,9 @@ Start with `docs/MAIN.md`.
 
 ## Contributing
 
-We'll check out your contribution if you:
+Please feel free to contribute. Here are the next steps:
 
-* Provide a comprehensive suite of tests for your fork.
-* Have a clear and documented rationale for your changes.
-* Package these up in a pull request.
-
-We'll do our best to help you out with any contribution issues you may have.
+* Add dummy images to contacts.
 
 ## License
 
