@@ -44,8 +44,24 @@ asyncTest("returns all contacts", function() {
   });
 });
 
-//test("returns all the matching contacts", function() {
-//});
+test("returns all the matching contacts", function() {
+  var demoContacts = [{
+    displayName: "Miguel",
+    name: { formatted: "Miguel" },
+    emails: [{ value: "miguel@miguel.pt" }]
+  }, {
+    displayName: "Bruno",
+    name: { formatted: "Bruno" },
+    emails: [{ value: "bruno@bruno.pt" }]
+  }];
+
+  phonegapContactsStub.contacts = demoContacts;
+
+  window.navigator.contacts.find(undefined, function(contacts) {
+    equal(contacts.length, 1);
+    start();
+  }, undefined, {filter: "Bruno"});
+});
 
 //test("returns an empty array when there is no match", function() {
 //});
