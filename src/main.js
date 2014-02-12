@@ -12,6 +12,14 @@
     };
   };
 
+  var contactNameStartsWith = function(contact, query) {
+    if (!! contact.displayName) {
+      return contact.displayName.indexOf(query) === 0;
+    } else if (!! contact.name) {
+      return contact.name.indexOf(query) === 0;
+    }
+  };
+
   var phonegapContactsStub = {
     contacts: [],
     addContacts: function(number) {
@@ -23,8 +31,24 @@
 
   if ( typeof root.navigator.contacts == 'undefined' ) {
     root.navigator.contacts = {
-      find: function(fields, callback) {
-        callback(phonegapContactsStub.contacts);
+      find: function(fields, callback, errorCallback, options) {
+        var filter = "";
+        var filteredContacts = [];
+
+        if (!! options ) {
+          filter = options.filter;
+        }
+
+        for( var i = 0; i < phonegapContactsStub.contacts.length; i++) {
+          var contact = phonegapContactsStub.contacts[i];
+          if ( filter === "" || contactNameStartsWith(contact, filter) ) {
+            filteredContacts.push(contact);
+          }
+        }
+
+        if (typeof callback == 'function') {
+          callback(filteredContacts);
+        }
       }
     };
   }

@@ -1,20 +1,51 @@
+var globalTeardown = function() {
+  phonegapContactsStub.contacts = [];
+};
+
 test("the base function exists", function() {
   ok(phonegapContactsStub);
 });
 
+module('Contact list', {
+  teardown: function() {
+    globalTeardown();
+  }
+});
+
+test("the contacts list has two contact", function() {
+  phonegapContactsStub.addContacts(2);
+  equal(phonegapContactsStub.contacts.length, 2);
+});
+
+test("the contacts list is empty", function() {
+  equal(phonegapContactsStub.contacts.length, 0);
+});
+
+module('Contacts API', {
+  teardown: function() {
+    globalTeardown();
+  }
+});
+
 asyncTest("returns empty contacts list", function() {
-  QUnit.reset(); 
   window.navigator.contacts.find(undefined, function(contacts) {
-    equal(0, contacts.length);
+    equal(contacts.length, 0);
     start();
   });
 });
 
-test("the contacts list has one contact", function() {
-  phonegapContactsStub.addContacts(1);
-  equal(1, phonegapContactsStub.contacts.length);
+asyncTest("returns all contacts", function() {
+  var numberContacts = 8;
+  phonegapContactsStub.addContacts( numberContacts );
+
+  window.navigator.contacts.find(undefined, function(contacts) {
+    equal(contacts.length, numberContacts);
+    start();
+  });
 });
 
-test("the contacts list is empty", function() {
-  equal(0, phonegapContactsStub.contacts.length);
-});
+//test("returns all the matching contacts", function() {
+//});
+
+//test("returns an empty array when there is no match", function() {
+//});
