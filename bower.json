@@ -1,6 +1,6 @@
 {
   "name": "phonegap-contacts-stub",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "dist/phonegap-contacts-stub.min.js",
   "ignore": [
     "**/.*",
@@ -9,6 +9,6 @@
     "test"
   ],
   "dependencies": {
-    "Faker": "*"
+    "Faker": "latest"
   }
 }
