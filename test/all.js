@@ -44,7 +44,7 @@ asyncTest("returns all contacts", function() {
   });
 });
 
-test("returns all the matching contacts", function() {
+asyncTest("returns all the matching contacts", function() {
   var demoContacts = [{
     displayName: "Miguel",
     name: { formatted: "Miguel" },
@@ -63,5 +63,22 @@ test("returns all the matching contacts", function() {
   }, undefined, {filter: "Bruno"});
 });
 
-//test("returns an empty array when there is no match", function() {
-//});
+asyncTest("returns an empty array when there is no match", function() {
+  var demoContacts = [{
+    displayName: "Miguel",
+    name: { formatted: "Miguel" },
+    emails: [{ value: "miguel@miguel.pt" }]
+  }, {
+    displayName: "Bruno",
+    name: { formatted: "Bruno" },
+    emails: [{ value: "bruno@bruno.pt" }]
+  }];
+
+  phonegapContactsStub.contacts = demoContacts;
+
+  window.navigator.contacts.find(undefined, function(contacts) {
+    equal(contacts.length, 0);
+    start();
+  }, undefined, {filter: "Ana"});
+
+});
