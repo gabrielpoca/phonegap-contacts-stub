@@ -82,3 +82,40 @@ asyncTest("returns an empty array when there is no match", function() {
   }, undefined, {filter: "Ana"});
 
 });
+
+module('Filters', {
+  teardown: function() {
+    globalTeardown();
+  }
+});
+
+asyncTest("ignores case sensitivity", function() {
+  var demoContacts = [{
+    displayName: "Miguel",
+    name: { formatted: "Miguel" },
+    emails: [{ value: "miguel@miguel.pt" }]
+  }];
+
+  phonegapContactsStub.contacts = demoContacts;
+
+  window.navigator.contacts.find(undefined, function(contacts) {
+    equal(contacts.length, 1);
+    start();
+  }, undefined, {filter: "mi"});
+});
+
+asyncTest("matches substrings not only on the beging", function() {
+  var demoContacts = [{
+    displayName: "Miguel",
+    name: { formatted: "Miguel" },
+    emails: [{ value: "miguel@miguel.pt" }]
+  }];
+
+  phonegapContactsStub.contacts = demoContacts;
+
+  window.navigator.contacts.find(undefined, function(contacts) {
+    equal(contacts.length, 1);
+    start();
+  }, undefined, {filter: "gu"});
+});
+

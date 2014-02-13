@@ -14,9 +14,9 @@
 
   var contactNameStartsWith = function(contact, query) {
     if (!! contact.displayName) {
-      return contact.displayName.indexOf(query) === 0;
+      return contact.displayName.toLowerCase().indexOf(query) !== -1;
     } else if (!! contact.name) {
-      return contact.name.indexOf(query) === 0;
+      return contact.name.toLowerCase().indexOf(query) !== -1;
     }
   };
 
@@ -36,7 +36,7 @@
         var filteredContacts = [];
 
         if (!! options ) {
-          filter = options.filter;
+          filter = options.filter.toLowerCase();
         }
 
         for( var i = 0; i < phonegapContactsStub.contacts.length; i++) {
