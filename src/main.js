@@ -24,7 +24,7 @@
         for ( var index = 0; index < res.length; index++) {
           var newPhotos = [];
           for ( var photo = 0; photo < res[index].photos.length; photo++) {
-            newPhotos.push(baseDir + res[index].photos[photo]);
+            newPhotos.push( {value: baseDir + res[index].photos[photo].value} );
           }
           res[index].photos = newPhotos;
         }
