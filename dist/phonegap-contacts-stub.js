@@ -13,7 +13,7 @@
 
   var phonegapContactsStub = {
     contacts: [],
-    addContacts: function(number, callback) {
+    addContacts: function(callback) {
       reqwest({
         url: '../vendor/charactersInfo.json?callback=load',
         type: 'jsonp'
