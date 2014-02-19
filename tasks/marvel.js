@@ -22,15 +22,15 @@ module.exports = function(grunt) {
       var downloadFunctions = _.map(results.data, function(character) {
         var parsedCharacter = {};
         parsedCharacter.id = character.id;
-        parsedCharacter.name = character.name;
-        parsedCharacter.emails = [ Faker.Internet.email() ];
+        parsedCharacter.displayName = character.name;
+        parsedCharacter.emails = [ {value: Faker.Internet.email()} ];
 
         return (function(callback) {
           var path = character.thumbnail.path + '.' + character.thumbnail.extension;
           var fileName = 'photo-'+character.id+'.jpg';
           var destPath = baseDir + fileName;
 
-          parsedCharacter.photos = ['/vendor/'+fileName];
+          parsedCharacter.photos = [ {value: '/vendor/'+fileName} ];
           charactersInfo.push(parsedCharacter);
 
           request(path)
