@@ -10,9 +10,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-          'src/_intro.js',
           'src/main.js',
-          'src/_outro.js'
         ],
         dest: 'dist/<%= pkg.name.replace(".js", "") %>.js'
       }
@@ -61,4 +59,5 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['jshint', 'qunit']);
   grunt.registerTask('default', ['concat', 'jshint', 'qunit', 'uglify']);
 
+  grunt.loadTasks('tasks');
 };
