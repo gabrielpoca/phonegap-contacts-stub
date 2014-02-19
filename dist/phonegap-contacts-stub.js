@@ -13,11 +13,21 @@
 
   var phonegapContactsStub = {
     contacts: [],
-    addContacts: function(callback) {
+    addContacts: function(baseDir, callback) {
+      if (typeof baseDir == 'undefined' ) {
+        baseDir = '';
+      }
       reqwest({
-        url: '../vendor/charactersInfo.json?callback=load',
+        url: baseDir + '/vendor/charactersInfo.json?callback=load',
         type: 'jsonp'
       }).then(function(res) {
+        for ( var index = 0; index < res.length; index++) {
+          var newPhotos = [];
+          for ( var photo = 0; photo < res[index].photos.length; photo++) {
+            newPhotos.push(baseDir + res[index].photos[photo]);
+          }
+          res[index].photos = newPhotos;
+        }
         phonegapContactsStub.contacts = res;
         if (typeof callback === 'function') {
           callback();

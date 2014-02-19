@@ -27,9 +27,12 @@ module.exports = function(grunt) {
 
         return (function(callback) {
           var path = character.thumbnail.path + '.' + character.thumbnail.extension;
-          var destPath = baseDir + 'photo-'+character.id+'.jpg';
-          parsedCharacter.photos = [destPath];
+          var fileName = 'photo-'+character.id+'.jpg';
+          var destPath = baseDir + fileName;
+
+          parsedCharacter.photos = ['/vendor/'+fileName];
           charactersInfo.push(parsedCharacter);
+
           request(path)
           .pipe(fs.createWriteStream(destPath))
           .on('close', callback);
