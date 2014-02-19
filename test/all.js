@@ -12,10 +12,10 @@ module('Contact list', {
   }
 });
 
-test("the contacts list has two contact", function() {
-  phonegapContactsStub.addContacts(2);
-  equal(phonegapContactsStub.contacts.length, 2);
-});
+//test("the contacts list has two contact", function() {
+  //phonegapContactsStub.addContacts(2);
+  //equal(phonegapContactsStub.contacts.length, 2);
+//});
 
 test("the contacts list is empty", function() {
   equal(phonegapContactsStub.contacts.length, 0);
@@ -34,15 +34,15 @@ asyncTest("returns empty contacts list", function() {
   });
 });
 
-asyncTest("returns all contacts", function() {
-  var numberContacts = 8;
-  phonegapContactsStub.addContacts( numberContacts );
+//asyncTest("returns all contacts", function() {
+  //var numberContacts = 8;
+  //phonegapContactsStub.addContacts( numberContacts );
 
-  window.navigator.contacts.find(undefined, function(contacts) {
-    equal(contacts.length, numberContacts);
-    start();
-  });
-});
+  //window.navigator.contacts.find(undefined, function(contacts) {
+    //equal(contacts.length, numberContacts);
+    //start();
+  //});
+//});
 
 asyncTest("returns all the matching contacts", function() {
   var demoContacts = [{

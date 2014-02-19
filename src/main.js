@@ -1,16 +1,7 @@
 (function(root){
   "use strict";
 
-  var Faker = root.Faker;
-
-  var generateContact = function() {
-    var name = Faker.Name.findName();
-    return {
-      displayName: name,
-      name: { formatted: name },
-      emails: [{ value: Faker.Internet.email() }]
-    };
-  };
+  var reqwest = root.reqwest;
 
   var contactNameStartsWith = function(contact, query) {
     if (!! contact.displayName) {
@@ -22,10 +13,16 @@
 
   var phonegapContactsStub = {
     contacts: [],
-    addContacts: function(number) {
-      for ( var i = 0; i < number; i++) {
-        phonegapContactsStub.contacts.push(generateContact());
-      }
+    addContacts: function(number, callback) {
+      reqwest({
+        url: '../vendor/charactersInfo.json?callback=load',
+        type: 'jsonp'
+      }).then(function(res) {
+        phonegapContactsStub.contacts = res;
+        if (typeof callback === 'function') {
+          callback();
+        }
+      });
     }
   };
 

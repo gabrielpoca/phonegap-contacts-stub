@@ -23,6 +23,7 @@
     "marvel-api": "~0.2.0",
     "request": "~2.34.0",
     "mkpath": "~0.1.0",
-    "lodash-node": "~2.4.1"
+    "lodash-node": "~2.4.1",
+    "Faker": "~0.6.2"
   }
 }
