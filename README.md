@@ -1,6 +1,7 @@
 # phonegap-contacts-stub
 
 A stub for the phonegap contacts api. Useful for testing a phonegap on the browser on the browser.
+It uses marvel heroes for data!
 
 ## About
 
@@ -20,9 +21,9 @@ Or grab the [source](https://github.com/gabrielpoca/phonegap-contacts-stub/dist/
 
 Basic usage is as follows:
 
-    phonegapContactsStub.addContacts( numberOfContacts );
+    phonegapContactsStub.addContacts( 'path to installation folder' );
 
-Where numberOfContacts is what the name says.
+Path to the installation folder. It is need so it can find then json file containing the heroes information.
 
 ## Documentation
 
